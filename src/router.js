@@ -3,8 +3,8 @@ import { Router, Route } from 'dva/router';
 import IndexPage from './routes/IndexPage';
 
 import Users from "./routes/Users.js";
-
 import Region from "./routes/Region.js";
+import Station from "./routes/Station.js";
 
 function RouterConfig({ history }) {
   return (
@@ -12,6 +12,7 @@ function RouterConfig({ history }) {
       <Route path="/" component={IndexPage} />
       <Route path="/users" component={Users} />
       <Route path="/region" component={Region} />
+      <Route path="/station" component={Station} />
     </Router>
   );
 }

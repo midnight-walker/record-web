@@ -21,13 +21,11 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default async function request(url, options) {
-    console.log(options);
     if(options && (options.method==='POST' || options.method==='PATCH')){
         options.headers={
             'Content-Type': 'application/json'
         }
     }
-    console.log(options);
     const response = await fetch(url, options);
 
     checkStatus(response);
@@ -40,7 +38,6 @@ export default async function request(url, options) {
     };
 
     if (response.headers.get('x-total-count')) {
-        console.log(response.headers);
         ret.headers['x-total-count'] = response.headers.get('x-total-count');
     }
 

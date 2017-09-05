@@ -30,6 +30,9 @@ function Header({ location }) {
                 <Menu.Item key="/region">
                     <Link to="/region"><Icon type="bars"/>区县</Link>
                 </Menu.Item>
+                <Menu.Item key="/station">
+                    <Link to="/station"><Icon type="bars"/>林场</Link>
+                </Menu.Item>
             </SubMenu>
             <Menu.Item key="/">
                 <Link to="/"><Icon type="home"/>Home</Link>
