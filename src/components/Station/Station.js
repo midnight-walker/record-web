@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Table, Pagination, Popconfirm, Button,Select } from 'antd';
+import { Row,Table, Pagination, Popconfirm, Button,Select } from 'antd';
 import { routerRedux } from 'dva/router';
 import styles from './Station.css';
 import { PAGE_SIZE } from '../../constants';
 import StationModal from './StationModal';
 
-function Station({ dispatch, list: dataSource, loading, total,regionList, page: current }) {
+function Station({ dispatch, list: dataSource, loading, total,regionList, page: current,searchRegion }) {
     function deleteHandler(id) {
         dispatch({
             type: 'station/remove',
@@ -17,7 +17,15 @@ function Station({ dispatch, list: dataSource, loading, total,regionList, page: 
     function pageChangeHandler(page) {
         dispatch(routerRedux.push({
             pathname: '/station',
-            query: { page },
+            query: { page,regionId:searchRegion },
+        }));
+    }
+
+    function regionChange(regionId) {
+        searchRegion=regionId;
+        dispatch(routerRedux.push({
+            pathname: '/station',
+            query: { page:1,regionId:searchRegion }
         }));
     }
 
@@ -35,8 +43,6 @@ function Station({ dispatch, list: dataSource, loading, total,regionList, page: 
         });
     }
 
-
-
     const columns = [
         {
             title: '林场名',
@@ -47,9 +53,13 @@ function Station({ dispatch, list: dataSource, loading, total,regionList, page: 
             title: '所属区县',
             dataIndex: 'regionId',
             key: 'regionId',
-            render: (text, record) => (
-                <span>{regionList.find(region=>region.id===record.regionId).name}</span>
-            )
+            render: (text, record) => {
+                let r=regionList.find(region=>region.id===record.regionId);
+                if(r){
+                    return (<span>{r.name}</span>)
+                }
+                return '';
+            }
         },
         {
             title: '操作',
@@ -69,11 +79,27 @@ function Station({ dispatch, list: dataSource, loading, total,regionList, page: 
     return (
         <div className={styles.normal}>
             <div>
-                <div className={styles.create}>
-                    <StationModal record={{}} regionList={regionList} onOk={createHandler}>
-                        <Button type="primary">创建林场</Button>
-                    </StationModal>
-                </div>
+                <Row>
+                    <div className={styles.create}>
+                        <StationModal record={{}} regionList={regionList} onOk={createHandler}>
+                            <Button type="primary">创建林场</Button>
+                        </StationModal>
+                    </div>
+
+                    <div className={styles.search}>
+                        <Select
+                            showSearch
+                            placeholder="选择区县"
+                            style={{ width: '200px' }}
+                            optionFilterProp="children"
+                            onChange={regionChange}
+                            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                        >
+                            <Select.Option key={0}>所有</Select.Option>
+                            {regionList.map(d => <Select.Option key={d.id}>{d.name}</Select.Option>)}
+                        </Select>
+                    </div>
+                </Row>
                 <Table
                     columns={columns}
                     dataSource={dataSource}
@@ -94,13 +120,14 @@ function Station({ dispatch, list: dataSource, loading, total,regionList, page: 
 }
 
 function mapStateToProps(state) {
-    const { list, total, page,regionList } = state.station;
+    const { list, total, page,regionList,searchRegion } = state.station;
     return {
         loading: state.loading.models.station,
         list,
         total,
         page,
-        regionList
+        regionList,
+        searchRegion
     };
 }
 

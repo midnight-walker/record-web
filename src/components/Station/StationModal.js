@@ -47,6 +47,7 @@ class StationEditModal extends Component {
             labelCol: { span: 6 },
             wrapperCol: { span: 14 }
         };
+        let initialRegion=regionList.find(region=>region.id===regionId);
 
         return (
             <span>
@@ -66,7 +67,10 @@ class StationEditModal extends Component {
                 >
                     {
                         getFieldDecorator('name', {
-                            initialValue: name
+                            initialValue: name,
+                            rules:[{
+                                required: true, message: '请输入林场名称',
+                            }]
                         })(<Input />)
                     }
                 </FormItem>
@@ -76,7 +80,10 @@ class StationEditModal extends Component {
                 >
                     {
                         getFieldDecorator('regionId', {
-                            initialValue: regionId
+                            initialValue: initialRegion?initialRegion.name:'',
+                            rules:[{
+                                required: true, message: '请选择所属区县'
+                            }]
                         })(<Select
                             showSearch
                             placeholder="选择区县"

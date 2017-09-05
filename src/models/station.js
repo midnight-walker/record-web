@@ -8,21 +8,23 @@ export default {
         regionList:[],
         total: null,
         page: null,
+        searchRegion:0
     },
     reducers: {
-        save(state, { payload: { data: list, total, page,regionList } }) {
-            return { ...state, list, total, page,regionList };
+        save(state, { payload: { data: list, total, page,regionList,searchRegion } }) {
+            return { ...state, list, total, page,regionList,searchRegion };
         },
     },
     effects: {
-        *fetch({ payload: { page = 1 } }, { call, put }) {
-            const { data, headers } = yield call(stationService.fetch, { page });
+        *fetch({ payload: { page = 1,regionId=0 } }, { call, put }) {
+            const { data, headers } = yield call(stationService.fetch, { page,regionId });
             const region = yield call(regionService.fetch, {});
             yield put({
                 type: 'save',
                 payload: {
                     data,
                     regionList:region.data,
+                    searchRegion:regionId,
                     total: parseInt(headers['x-total-count'], 10),
                     page: parseInt(page, 10),
                 },

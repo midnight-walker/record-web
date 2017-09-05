@@ -67,6 +67,9 @@ class RegionEditModal extends Component {
                     {
                         getFieldDecorator('name', {
                             initialValue: name,
+                            rules:[{
+                                required: true, message: '请输入区县名称'
+                            }]
                         })(<Input />)
                     }
                 </FormItem>
