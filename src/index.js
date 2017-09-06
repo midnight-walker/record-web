@@ -12,6 +12,7 @@ app.use(createLoading());
 app.model(require('./models/users'));
 app.model(require("./models/region"));
 app.model(require("./models/station"));
+app.model(require("./models/defence"));
 
 // 4. Router
 app.router(require('./router'));
