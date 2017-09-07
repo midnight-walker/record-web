@@ -1,8 +1,8 @@
 import request from '../utils/request';
 import { PAGE_SIZE } from '../constants';
 
-export function fetch({ page,regionId }) {
-    return request(`/api/defence?_page=${page}&_limit=${PAGE_SIZE}&regionId=${regionId}`);
+export function fetch({ page,regionId,stationId }) {
+    return request(`/api/defence?_page=${page}&_limit=${PAGE_SIZE}&regionId=${regionId}&stationId=${stationId}`);
 }
 
 export function remove(id) {

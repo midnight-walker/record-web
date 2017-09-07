@@ -5,8 +5,9 @@ import { routerRedux } from 'dva/router';
 import styles from './Defence.css';
 import { PAGE_SIZE } from '../../constants';
 import DefenceModal from './DefenceModal';
+import Search from '../Common/StationSelect'
 
-function Defence({ dispatch, list: dataSource, loading, total,regionList, page: current,searchRegion }) {
+function Defence({ dispatch, list: dataSource, loading, total,regionList,stationList, page: current,searchRegion,searchStation }) {
     function deleteHandler(id) {
         dispatch({
             type: 'defence/remove',
@@ -17,17 +18,27 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList, page: 
     function pageChangeHandler(page) {
         dispatch(routerRedux.push({
             pathname: '/defence',
-            query: { page,regionId:searchRegion },
+            query: { page,regionId:searchRegion,stationId:searchStation },
         }));
     }
 
     function regionChange(regionId) {
+        console.log(this);
         searchRegion=regionId;
+        searchStation=0;
         dispatch(routerRedux.push({
             pathname: '/defence',
-            query: { page:1,regionId:searchRegion }
+            query: { page:1,regionId:searchRegion,stationId:searchStation }
         }));
     }
+    function stationChange(stationId) {
+        searchStation=stationId;
+        dispatch(routerRedux.push({
+            pathname: '/defence',
+            query: { page:1,regionId:searchRegion,stationId:searchStation }
+        }));
+    }
+
 
     function editHandler(id, values) {
         dispatch({
@@ -66,7 +77,7 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList, page: 
             key: 'operation',
             render: (text, record) => (
                 <span className={styles.operation}>
-          <DefenceModal record={record} regionList={regionList} onOk={editHandler.bind(null, record.id)}>
+          <DefenceModal record={record} regionList={regionList} stationList={stationList} onOk={editHandler.bind(null, record.id)}>
               <a>编辑</a>
           </DefenceModal>
           <Popconfirm title="确定要删除吗" onConfirm={deleteHandler.bind(null, record.id)}>
@@ -81,8 +92,8 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList, page: 
             <div>
                 <Row>
                     <div className={styles.create}>
-                        <DefenceModal record={{}} regionList={regionList} onOk={createHandler}>
-                            <Button type="primary">创建林场</Button>
+                        <DefenceModal record={{}} regionList={regionList} stationList={stationList} onOk={createHandler}>
+                            <Button type="primary">创建防治记录</Button>
                         </DefenceModal>
                     </div>
 
@@ -98,6 +109,35 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList, page: 
                             <Select.Option key={0}>所有</Select.Option>
                             {regionList.map(d => <Select.Option key={d.id}>{d.name}</Select.Option>)}
                         </Select>
+                    </div>
+
+                    <div className={styles.search}>
+                        <Select
+                            showSearch
+                            placeholder="选择林场"
+                            style={{ width: '200px' }}
+                            optionFilterProp="children"
+                            onChange={stationChange}
+                            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                        >
+                            <Select.Option key={0}>所有</Select.Option>
+                            {stationList.map(d => <Select.Option key={d.id}>{d.name}</Select.Option>)}
+                        </Select>
+                    </div>
+
+                    <div className={styles.search}>
+                        <Search
+                            {...{
+                                select: true,
+                                selectOptions: [
+                                    { value: 'components', name: '组件' },
+                                    { value: 'page', name: '页面' },
+                                ],
+                                selectProps: {
+                                    defaultValue: 'components',
+                                },
+                            }}
+                        />
                     </div>
                 </Row>
                 <Table
@@ -120,14 +160,16 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList, page: 
 }
 
 function mapStateToProps(state) {
-    const { list, total, page,regionList,searchRegion } = state.defence;
+    const { list, total, page,regionList,stationList,searchRegion,searchStation } = state.defence;
     return {
         loading: state.loading.models.defence,
         list,
         total,
         page,
         regionList,
-        searchRegion
+        stationList,
+        searchRegion,
+        searchStation
     };
 }
 

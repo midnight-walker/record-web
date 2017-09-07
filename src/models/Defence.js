@@ -1,30 +1,35 @@
 import * as defenceService from '../services/defence';
 import * as regionService from '../services/region';
+import * as stationService from '../services/station';
 
 export default {
     namespace: 'defence',
     state: {
         list: [],
         regionList:[],
+        stationList:[],
         total: null,
         page: null,
         searchRegion:0
     },
     reducers: {
-        save(state, { payload: { data: list, total, page,regionList,searchRegion } }) {
-            return { ...state, list, total, page,regionList,searchRegion };
+        save(state, { payload: { data: list, total, page,regionList,stationList,searchRegion,searchStation } }) {
+            return { ...state, list, total, page,regionList,stationList,searchRegion,searchStation };
         },
     },
     effects: {
-        *fetch({ payload: { page = 1,regionId=0 } }, { call, put }) {
-            const { data, headers } = yield call(defenceService.fetch, { page,regionId });
+        *fetch({ payload: { page = 1,regionId=0,stationId=0 } }, { call, put }) {
+            const { data, headers } = yield call(defenceService.fetch, { page,regionId,stationId });
             const region = yield call(regionService.fetch, {});
+            const station = yield call(stationService.fetch, {});
             yield put({
                 type: 'save',
                 payload: {
                     data,
                     regionList:region.data,
+                    stationList:station.data,
                     searchRegion:regionId,
+                    searchStation:stationId,
                     total: parseInt(headers['x-total-count'], 10),
                     page: parseInt(page, 10),
                 },

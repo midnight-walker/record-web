@@ -34,14 +34,18 @@ function Header({ location }) {
                     <Link to="/station"><Icon type="bars"/>林场</Link>
                 </Menu.Item>
             </SubMenu>
+            <SubMenu title={
+                <span><Icon type="bars" />信息管理</span>
+            }>
+                <Menu.Item key="/defence">
+                    <Link to="/defence"><Icon type="bars"/>防治</Link>
+                </Menu.Item>
+            </SubMenu>
             <Menu.Item key="/">
                 <Link to="/"><Icon type="home"/>Home</Link>
             </Menu.Item>
             <Menu.Item key="/404">
                 <Link to="/page-you-dont-know"><Icon type="frown-circle"/>404</Link>
-            </Menu.Item>
-            <Menu.Item key="/antd">
-                <a href="https://github.com/dvajs/dva" target="_blank">dva</a>
             </Menu.Item>
         </Menu>
     );
