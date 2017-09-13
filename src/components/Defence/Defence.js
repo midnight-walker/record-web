@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'dva';
 import { Row,Table, Pagination, Popconfirm, Button,Select } from 'antd';
 import { routerRedux } from 'dva/router';
-import styles from './Defence.css';
+import styles from './Defence.less';
 import { PAGE_SIZE } from '../../constants';
 import DefenceModal from './DefenceModal';
 import Search from '../Common/StationSelect'
+
 
 function Defence({ dispatch, list: dataSource, loading, total,regionList,stationList, page: current,searchRegion,searchStation }) {
     function deleteHandler(id) {
@@ -38,7 +39,6 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList,station
             query: { page:1,regionId:searchRegion,stationId:searchStation }
         }));
     }
-
 
     function editHandler(id, values) {
         dispatch({
@@ -87,6 +87,12 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList,station
             )
         }
     ];
+
+    const allItem={
+        name:'全部',
+        id:0
+    };
+
     return (
         <div className={styles.normal}>
             <div>
@@ -98,44 +104,13 @@ function Defence({ dispatch, list: dataSource, loading, total,regionList,station
                     </div>
 
                     <div className={styles.search}>
-                        <Select
-                            showSearch
-                            placeholder="选择区县"
-                            style={{ width: '200px' }}
-                            optionFilterProp="children"
-                            onChange={regionChange}
-                            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                        >
-                            <Select.Option key={0}>所有</Select.Option>
-                            {regionList.map(d => <Select.Option key={d.id}>{d.name}</Select.Option>)}
-                        </Select>
-                    </div>
-
-                    <div className={styles.search}>
-                        <Select
-                            showSearch
-                            placeholder="选择林场"
-                            style={{ width: '200px' }}
-                            optionFilterProp="children"
-                            onChange={stationChange}
-                            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                        >
-                            <Select.Option key={0}>所有</Select.Option>
-                            {stationList.map(d => <Select.Option key={d.id}>{d.name}</Select.Option>)}
-                        </Select>
-                    </div>
-
-                    <div className={styles.search}>
                         <Search
                             {...{
-                                select: true,
-                                selectOptions: [
-                                    { value: 'components', name: '组件' },
-                                    { value: 'page', name: '页面' },
-                                ],
-                                selectProps: {
-                                    defaultValue: 'components',
-                                },
+                                regionList:[allItem,...regionList],
+                                stationList,
+                                getList:(regionId,stationId)=>{
+                                    console.log(regionId,stationId)
+                                }
                             }}
                         />
                     </div>
