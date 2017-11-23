@@ -1,10 +1,10 @@
-import * as defenceService from '../services/defence';
+import * as scxcSupervisorService from '../services/scxcSupervisor';
 import * as regionService from '../services/region';
 import * as stationService from '../services/station';
 import {getCurrStartDay,getCurrEndDay} from '../utils/date'
 
 export default {
-    namespace: 'defence',
+    namespace: 'scxcSupervisor',
     state: {
         list: [],
         regionList:[],
@@ -22,7 +22,7 @@ export default {
     },
     effects: {
         *fetch({ payload: { page = 1,regionId=0,stationId=0,startDate=getCurrStartDay(),endDate=getCurrEndDay() } }, { call, put }) {
-            const { data, headers } = yield call(defenceService.fetch, { page,regionId,stationId,startDate,endDate });
+            const { data, headers } = yield call(scxcSupervisorService.fetch, { page,regionId,stationId,startDate,endDate });
             const region = yield call(regionService.fetch, {});
             const station = yield call(stationService.fetch, {});
             yield put({
@@ -41,26 +41,26 @@ export default {
             });
         },
         *remove({ payload: id }, { call, put }) {
-            yield call(defenceService.remove, id);
+            yield call(scxcSupervisorService.remove, id);
             yield put({ type: 'reload' });
         },
         *patch({ payload: { id, values } }, { call, put }) {
-            yield call(defenceService.patch, id, values);
+            yield call(scxcSupervisorService.patch, id, values);
             yield put({ type: 'reload' });
         },
         *create({ payload: values }, { call, put }) {
-            yield call(defenceService.create, values);
+            yield call(scxcSupervisorService.create, values);
             yield put({ type: 'reload' });
         },
         *reload(action, { put, select }) {
-            const page = yield select(state => state.defence.page);
+            const page = yield select(state => state.scxcSupervisor.page);
             yield put({ type: 'fetch', payload: { page } });
         },
     },
     subscriptions: {
         setup({ dispatch, history }) {
             return history.listen(({ pathname, query }) => {
-                if (pathname === '/defence') {
+                if (pathname === '/scxcSupervisor') {
                     dispatch({ type: 'fetch', payload: query });
                 }
             });

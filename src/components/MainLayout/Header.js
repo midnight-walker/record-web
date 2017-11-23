@@ -40,6 +40,9 @@ function Header({ location }) {
                 <Menu.Item key="/defence">
                     <Link to="/defence"><Icon type="bars"/>防治</Link>
                 </Menu.Item>
+                <Menu.Item key="/scxcSupervisor">
+                    <Link to="/scxcSupervisor"><Icon type="bars"/>松材线虫监理</Link>
+                </Menu.Item>
             </SubMenu>
             <Menu.Item key="/">
                 <Link to="/"><Icon type="home"/>Home</Link>
