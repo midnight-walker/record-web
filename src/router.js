@@ -10,7 +10,7 @@ import Defence from "./routes/Defence.js";
 import ScxcSupervisor from "./routes/ScxcSupervisor.js";
 
 function isLogin(nextState, replace){
-    if(window.location.search!=='?clkj'){
+    if(window.location.search.indexOf('?clkj')===-1){
         replace({
             pathname: '/login',
             state: {
