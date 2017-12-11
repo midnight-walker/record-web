@@ -40,10 +40,10 @@ class pictureModal extends React.Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
-                    style={{width:'1000px'}}
+                    width="1000"
                 >
                     <div style={{width: '100%'}}>
-                        {list.map(d => <img src={d}/>)}
+                        {list.map(d => <img style="max-width:100%" src={d}/>)}
                     </div>
                 </Modal>
             </div>

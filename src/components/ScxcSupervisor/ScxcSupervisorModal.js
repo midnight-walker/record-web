@@ -61,10 +61,10 @@ class ScxcSupervisorEditModal extends Component {
     render() {
         const { children,regionList,stationList } = this.props;
         const { getFieldDecorator } = this.props.form;
-        const { name, regionId,stationId,village,group,smallClass,placeName,smallClassArea,treeCompose,targetName,time,workGroup,workQuality,mainQuestion,effect,fcXianyan,fcXixiao,fcGaodudayuwu,fcChanzhe,fcFugai,fcFengzhe,fcHuoshao,fcXuanya,fcXuangua,fcHuoshukuzhi,jcFachu,jcYincang,jcKusi,fsJicai,fzFazhuang,fzJiahao,fzTouyao,fzShuliao,fzNitu,longitude,latitude,picture,operator } = this.props.record;
+        const { name, regionId,stationId,village,group,smallClass,placeName,smallClassArea,treeCompose,targetName,time,workGroup,fcXianyan,fcXixiao,fcGaodudayuwu,fcChanzhe,fcFugai,fcFengzhe,fcHuoshao,fcXuanya,fcXuangua,fcHuoshukuzhi,fcTotal,jcFcXianyan,jcFcXixiao,jcFcGaodudayuwu,jcFcChanzhe,jcFcFugai,jcFcFengzhe,jcFcHuoshao,jcFcXuanya,jcFcXuangua,jcFcHuoshukuzhi,jcFcTotal,jcYcCaogai,jcYcKuye,jcYcTurang,jcYcTengman,jcYcDigou,jcYcDongxue,jcYcTotal,jcKusi,fsFcXianyan,fsFcXixiao,fsFcGaodudayuwu,fsFcChanzhe,fsFcFugai,fsFcFengzhe,fsFcHuoshao,fsFcXuanya,fsFcXuangua,fsFcHuoshukuzhi,fsFcTotal,fsYcCaogai,fsYcKuye,fsYcTurang,fsYcTengman,fsYcDigou,fsYcDongxue,fsYcTotal,fsKusi,fzFazhuang,fzBopi,fzJiahao,fzTouyao,fzShuliao,fzNitu,fzTotal,fzNumber,longitude,latitude,picture,operator } = this.props.record;
         const formItemLayout = {
-            labelCol: { span: 6 },
-            wrapperCol: { span: 14 }
+            labelCol: { span: 12 },
+            wrapperCol: { span: 8 }
         };
         let initialRegion=regionList.find(region=>region.id===regionId);
         let initialStation=stationList.find(station=>station.id===stationId);
@@ -243,51 +243,10 @@ class ScxcSupervisorEditModal extends Component {
                         })(<Input />)
                     }
                 </FormItem>
-                <FormItem
-                    {...formItemLayout}
-                    label="施工作业质量描述"
-                >
-                    {
-                        getFieldDecorator('workQuality', {
-                            initialValue: workQuality,
-                            rules:[{
-                                required: true, message: '请填写施工作业质量描述',
-                            }]
-                        })(<Input />)
-                    }
-                </FormItem>
 
                 <FormItem
                     {...formItemLayout}
-                    label="主要问题"
-                >
-                    {
-                        getFieldDecorator('mainQuestion', {
-                            initialValue: mainQuestion,
-                            rules:[{
-                                required: true, message: '请填写主要问题',
-                            }]
-                        })(<Input />)
-                    }
-                </FormItem>
-
-                <FormItem
-                    {...formItemLayout}
-                    label="防治效果（%）"
-                >
-                    {
-                        getFieldDecorator('effect', {
-                            initialValue: effect,
-                            rules:[{
-                                required: true, message: '请填写防治效果（%）',
-                            }]
-                        })(<Input />)
-                    }
-                </FormItem>
-
-                <FormItem
-                    {...formItemLayout}
-                    label="显眼枯死松树"
+                    label="伐除对象-显眼枯死松树"
                 >
                     {
                         getFieldDecorator('fcXianyan', {
@@ -301,7 +260,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="细小枯死松树"
+                    label="伐除对象-细小枯死松树"
                 >
                     {
                         getFieldDecorator('fcXixiao', {
@@ -315,13 +274,13 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="高度达5厘米以上的松树桩头"
+                    label="伐除对象-高度5厘米以上的树桩"
                 >
                     {
                         getFieldDecorator('fcGaodudayuwu', {
                             initialValue: fcGaodudayuwu,
                             rules:[{
-                                required: true, message: '请填写高度达5厘米以上的松树桩头',
+                                required: true, message: '请填写高度5厘米以上的树桩',
                             }]
                         })(<Input />)
                     }
@@ -329,13 +288,13 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="藤蔓缠着以及与活树连着的枯死松树"
+                    label="伐除对象-藤蔓或活树连着枯死树"
                 >
                     {
                         getFieldDecorator('fcChanzhe', {
                             initialValue: fcChanzhe,
                             rules:[{
-                                required: true, message: '请填写藤蔓缠着以及与活树连着的枯死松树',
+                                required: true, message: '请填写藤蔓或活树连着枯死树',
                             }]
                         })(<Input />)
                     }
@@ -343,7 +302,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="藤蔓覆盖的枯死松树"
+                    label="伐除对象-藤蔓覆盖的枯死松树"
                 >
                     {
                         getFieldDecorator('fcFugai', {
@@ -357,7 +316,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="风折风倒的枯死松树"
+                    label="伐除对象-风折风倒的枯死松树"
                 >
                     {
                         getFieldDecorator('fcFengzhe', {
@@ -371,7 +330,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="火烧、雷击枯死松树"
+                    label="伐除对象-火烧、雷击枯死松树"
                 >
                     {
                         getFieldDecorator('fcHuoshao', {
@@ -385,7 +344,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="悬崖边枯死松树"
+                    label="伐除对象-悬崖边枯死松树"
                 >
                     {
                         getFieldDecorator('fcXuanya', {
@@ -399,7 +358,7 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="悬挂或地面的松树梢头"
+                    label="伐除对象-悬挂或地面的松树梢头"
                 >
                     {
                         getFieldDecorator('fcXuangua', {
@@ -413,13 +372,13 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="活松树上2厘米以上的当年度枯死的树枝"
+                    label="伐除对象-活松树上枯死树枝"
                 >
                     {
                         getFieldDecorator('fcHuoshukuzhi', {
                             initialValue: fcHuoshukuzhi,
                             rules:[{
-                                required: true, message: '请填写活松树上2厘米以上的当年度枯死的树枝',
+                                required: true, message: '请填写活松树上枯死树枝',
                             }]
                         })(<Input />)
                     }
@@ -427,13 +386,13 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="伐除对象"
+                    label="伐除对象-伐除小计"
                 >
                     {
-                        getFieldDecorator('jcFachu', {
-                            initialValue: jcFachu,
+                        getFieldDecorator('fcTotal', {
+                            initialValue: fcTotal,
                             rules:[{
-                                required: true, message: '请填写伐除对象',
+                                required: true, message: '请填写伐除小计',
                             }]
                         })(<Input />)
                     }
@@ -441,13 +400,13 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="隐藏对象"
+                    label="集材对象-显眼枯死松树"
                 >
                     {
-                        getFieldDecorator('jcYincang', {
-                            initialValue: jcYincang,
+                        getFieldDecorator('jcFcXianyan', {
+                            initialValue: jcFcXianyan,
                             rules:[{
-                                required: true, message: '请填写隐藏对象',
+                                required: true, message: '请填写显眼枯死松树',
                             }]
                         })(<Input />)
                     }
@@ -455,13 +414,266 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="林地上1厘米以上的枯死松枝"
+                    label="集材对象-细小枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcXixiao', {
+                            initialValue: jcFcXixiao,
+                            rules:[{
+                                required: true, message: '请填写细小枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-高度5厘米以上的树桩"
+                >
+                    {
+                        getFieldDecorator('jcFcGaodudayuwu', {
+                            initialValue: jcFcGaodudayuwu,
+                            rules:[{
+                                required: true, message: '请填写高度5厘米以上的树桩',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-藤蔓或活树连着枯死树"
+                >
+                    {
+                        getFieldDecorator('jcFcChanzhe', {
+                            initialValue: jcFcChanzhe,
+                            rules:[{
+                                required: true, message: '请填写藤蔓或活树连着枯死树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-藤蔓覆盖的枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcFugai', {
+                            initialValue: jcFcFugai,
+                            rules:[{
+                                required: true, message: '请填写藤蔓覆盖的枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-风折风倒的枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcFengzhe', {
+                            initialValue: jcFcFengzhe,
+                            rules:[{
+                                required: true, message: '请填写风折风倒的枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-火烧、雷击枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcHuoshao', {
+                            initialValue: jcFcHuoshao,
+                            rules:[{
+                                required: true, message: '请填写火烧、雷击枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-悬崖边枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcXuanya', {
+                            initialValue: jcFcXuanya,
+                            rules:[{
+                                required: true, message: '请填写悬崖边枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-悬挂或地面的松树梢头"
+                >
+                    {
+                        getFieldDecorator('jcFcXuangua', {
+                            initialValue: jcFcXuangua,
+                            rules:[{
+                                required: true, message: '悬挂或地面的松树梢头',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-活松树上枯死树枝"
+                >
+                    {
+                        getFieldDecorator('jcFcHuoshukuzhi', {
+                            initialValue: jcFcHuoshukuzhi,
+                            rules:[{
+                                required: true, message: '请填写活松树上枯死树枝',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-伐除小计"
+                >
+                    {
+                        getFieldDecorator('jcFcTotal', {
+                            initialValue: jcFcTotal,
+                            rules:[{
+                                required: true, message: '请填写伐除小计',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-用草覆盖"
+                >
+                    {
+                        getFieldDecorator('jcYcCaogai', {
+                            initialValue: jcYcCaogai,
+                            rules:[{
+                                required: true, message: '请填写用草覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-用枯枝落叶覆盖"
+                >
+                    {
+                        getFieldDecorator('jcYcKuye', {
+                            initialValue: jcYcKuye,
+                            rules:[{
+                                required: true, message: '请填写用枯枝落叶覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-用土壤覆盖"
+                >
+                    {
+                        getFieldDecorator('jcYcTurang', {
+                            initialValue: jcYcTurang,
+                            rules:[{
+                                required: true, message: '请填写用土壤覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-用藤蔓覆盖的松材"
+                >
+                    {
+                        getFieldDecorator('jcYcTengman', {
+                            initialValue: jcYcTengman,
+                            rules:[{
+                                required: true, message: '请填写用藤蔓覆盖的松材',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-隐藏于地沟"
+                >
+                    {
+                        getFieldDecorator('jcYcDigou', {
+                            initialValue: jcYcDigou,
+                            rules:[{
+                                required: true, message: '请填写隐藏于地沟',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-洞穴中的松材"
+                >
+                    {
+                        getFieldDecorator('jcYcDongxue', {
+                            initialValue: jcYcDongxue,
+                            rules:[{
+                                required: true, message: '请填写洞穴中的松材',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-隐藏小计"
+                >
+                    {
+                        getFieldDecorator('jcYcTotal', {
+                            initialValue: jcYcTotal,
+                            rules:[{
+                                required: true, message: '请填写隐藏小计',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="集材对象-1厘米以上枯死松枝"
                 >
                     {
                         getFieldDecorator('jcKusi', {
                             initialValue: jcKusi,
                             rules:[{
-                                required: true, message: '林地上1厘米以上的枯死松枝',
+                                required: true, message: '请填写1厘米以上枯死松枝',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-显眼枯死松树"
+                >
+                    {
+                        getFieldDecorator('fsFcXianyan', {
+                            initialValue: fsFcXianyan,
+                            rules:[{
+                                required: true, message: '请填写显眼枯死松树',
                             }]
                         })(<Input />)
                     }
@@ -469,17 +681,256 @@ class ScxcSupervisorEditModal extends Component {
 
                 <FormItem
                     {...formItemLayout}
-                    label="集材对象"
+                    label="焚烧对象-细小枯死松树"
                 >
                     {
-                        getFieldDecorator('fsJicai', {
-                            initialValue: fsJicai,
+                        getFieldDecorator('fsFcXixiao', {
+                            initialValue: fsFcXixiao,
                             rules:[{
-                                required: true, message: '请填写集材对象',
+                                required: true, message: '请填写细小枯死松树',
                             }]
                         })(<Input />)
                     }
                 </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-高度5厘米以上的树桩"
+                >
+                    {
+                        getFieldDecorator('fsFcGaodudayuwu', {
+                            initialValue: fsFcGaodudayuwu,
+                            rules:[{
+                                required: true, message: '请填写高度5厘米以上的树桩',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-藤蔓或活树连着枯死树"
+                >
+                    {
+                        getFieldDecorator('fsFcChanzhe', {
+                            initialValue: fsFcChanzhe,
+                            rules:[{
+                                required: true, message: '请填写藤蔓或活树连着枯死树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-藤蔓覆盖的枯死松树"
+                >
+                    {
+                        getFieldDecorator('jcFcFugai', {
+                            initialValue: jcFcFugai,
+                            rules:[{
+                                required: true, message: '请填写藤蔓覆盖的枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-风折风倒的枯死松树"
+                >
+                    {
+                        getFieldDecorator('fsFcFengzhe', {
+                            initialValue: fsFcFengzhe,
+                            rules:[{
+                                required: true, message: '请填写风折风倒的枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-火烧、雷击枯死松树"
+                >
+                    {
+                        getFieldDecorator('fsFcHuoshao', {
+                            initialValue: fsFcHuoshao,
+                            rules:[{
+                                required: true, message: '请填写火烧、雷击枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-悬崖边枯死松树"
+                >
+                    {
+                        getFieldDecorator('fsFcXuanya', {
+                            initialValue: fsFcXuanya,
+                            rules:[{
+                                required: true, message: '请填写悬崖边枯死松树',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-悬挂或地面的松树梢头"
+                >
+                    {
+                        getFieldDecorator('fsFcXuangua', {
+                            initialValue: fsFcXuangua,
+                            rules:[{
+                                required: true, message: '悬挂或地面的松树梢头',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-活松树上枯死树枝"
+                >
+                    {
+                        getFieldDecorator('fsFcHuoshukuzhi', {
+                            initialValue: fsFcHuoshukuzhi,
+                            rules:[{
+                                required: true, message: '请填写活松树上枯死树枝',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-伐除小计"
+                >
+                    {
+                        getFieldDecorator('fsFcTotal', {
+                            initialValue: fsFcTotal,
+                            rules:[{
+                                required: true, message: '请填写伐除小计',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-用草覆盖"
+                >
+                    {
+                        getFieldDecorator('fsYcCaogai', {
+                            initialValue: fsYcCaogai,
+                            rules:[{
+                                required: true, message: '请填写用草覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-用枯枝落叶覆盖"
+                >
+                    {
+                        getFieldDecorator('fsYcKuye', {
+                            initialValue: fsYcKuye,
+                            rules:[{
+                                required: true, message: '请填写用枯枝落叶覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-用土壤覆盖"
+                >
+                    {
+                        getFieldDecorator('fsYcTurang', {
+                            initialValue: fsYcTurang,
+                            rules:[{
+                                required: true, message: '请填写用土壤覆盖',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-用藤蔓覆盖的松材"
+                >
+                    {
+                        getFieldDecorator('fsYcTengman', {
+                            initialValue: fsYcTengman,
+                            rules:[{
+                                required: true, message: '请填写用藤蔓覆盖的松材',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-隐藏于地沟"
+                >
+                    {
+                        getFieldDecorator('fsYcDigou', {
+                            initialValue: fsYcDigou,
+                            rules:[{
+                                required: true, message: '请填写隐藏于地沟',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-洞穴中的松材"
+                >
+                    {
+                        getFieldDecorator('fsYcDongxue', {
+                            initialValue: fsYcDongxue,
+                            rules:[{
+                                required: true, message: '请填写洞穴中的松材',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-隐藏小计"
+                >
+                    {
+                        getFieldDecorator('fsYcTotal', {
+                            initialValue: fsYcTotal,
+                            rules:[{
+                                required: true, message: '请填写隐藏小计',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="焚烧对象-1厘米以上枯死松枝"
+                >
+                    {
+                        getFieldDecorator('fsKusi', {
+                            initialValue: fsKusi,
+                            rules:[{
+                                required: true, message: '请填写1厘米以上枯死松枝',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
 
                 <FormItem
                     {...formItemLayout}
@@ -490,6 +941,20 @@ class ScxcSupervisorEditModal extends Component {
                             initialValue: fzFazhuang,
                             rules:[{
                                 required: true, message: '请填写伐桩高度5厘米以下',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="伐桩剥皮"
+                >
+                    {
+                        getFieldDecorator('fzBopi', {
+                            initialValue: fzBopi,
+                            rules:[{
+                                required: true, message: '请填写伐桩剥皮',
                             }]
                         })(<Input />)
                     }
@@ -546,7 +1011,36 @@ class ScxcSupervisorEditModal extends Component {
                             }]
                         })(<Input />)
                     }
-            </FormItem>
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="伐桩小计"
+                >
+                    {
+                        getFieldDecorator('fzTotal', {
+                            initialValue: fzTotal,
+                            rules:[{
+                                required: true, message: '请填写伐桩小计',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
+                <FormItem
+                    {...formItemLayout}
+                    label="伐桩个数"
+                >
+                    {
+                        getFieldDecorator('fzNumber', {
+                            initialValue: fzNumber,
+                            rules:[{
+                                required: true, message: '请填写伐桩个数',
+                            }]
+                        })(<Input />)
+                    }
+                </FormItem>
+
                 <FormItem
                     {...formItemLayout}
                     label="经度"

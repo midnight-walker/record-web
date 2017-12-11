@@ -137,94 +137,262 @@ function ScxcSupervisor({ dispatch, list: dataSource, loading, total,regionList,
             key: 'workGroup'
         },
         {
-            title: '施工作业质量描述',
-            dataIndex: 'workQuality',
-            key: 'workQuality'
-        },
-        {
-            title: '主要问题',
-            dataIndex: 'mainQuestion',
-            key: 'mainQuestion'
-        },
-        {
-            title: '防治效果（%）',
-            dataIndex: 'effect',
-            key: 'effect'
-        },
-        {
-            title: '显眼枯死松树',
+            title: '伐除对象-显眼枯死松树',
             dataIndex: 'fcXianyan',
             key: 'fcXianyan'
         },
         {
-            title: '细小枯死松树',
+            title: '伐除对象-细小枯死松树',
             dataIndex: 'fcXixiao',
             key: 'fcXixiao'
         },
         {
-            title: '高度达5厘米以上的松树桩头',
+            title: '伐除对象-高度5厘米以上的树桩',
             dataIndex: 'fcGaodudayuwu',
             key: 'fcGaodudayuwu'
         },
         {
-            title: '藤蔓缠着以及与活树连着的枯死松树',
+            title: '伐除对象-藤蔓或活树连着枯死树',
             dataIndex: 'fcChanzhe',
             key: 'fcChanzhe'
         },
         {
-            title: '藤蔓覆盖的枯死松树',
+            title: '伐除对象-藤蔓覆盖的枯死松树',
             dataIndex: 'fcFugai',
             key: 'fcFugai'
         },
         {
-            title: '风折风倒的枯死松树',
+            title: '伐除对象-风折风倒的枯死松树',
             dataIndex: 'fcFengzhe',
             key: 'fcFengzhe'
         },
         {
-            title: '火烧、雷击枯死松树',
+            title: '伐除对象-火烧、雷击枯死松树',
             dataIndex: 'fcHuoshao',
             key: 'fcHuoshao'
         },
         {
-            title: '悬崖边枯死松树',
+            title: '伐除对象-悬崖边枯死松树',
             dataIndex: 'fcXuanya',
             key: 'fcXuanya'
         },
         {
-            title: '悬挂或地面的松树梢头',
+            title: '伐除对象-悬挂或地面的松树梢头',
             dataIndex: 'fcXuangua',
             key: 'fcXuangua'
         },
         {
-            title: '活松树上2厘米以上的当年度枯死的树枝',
+            title: '伐除对象-活松树上枯死树枝',
             dataIndex: 'fcHuoshukuzhi',
             key: 'fcHuoshukuzhi'
         },
         {
-            title: '伐除对象',
-            dataIndex: 'jcFachu',
-            key: 'jcFachu'
+            title: '伐除对象-伐除小计',
+            dataIndex: 'fcHuoTotal',
+            key: 'fcHuoTotal'
+        },
+        //集材开始
+        {
+            title: '集材对象-显眼枯死松树',
+            dataIndex: 'jcFcXianyan',
+            key: 'jcFcXianyan'
         },
         {
-            title: '隐藏对象',
-            dataIndex: 'jcYincang',
-            key: 'jcYincang'
+            title: '集材对象-细小枯死松树',
+            dataIndex: 'jcFcXixiao',
+            key: 'jcFcXixiao'
         },
         {
-            title: '林地上1厘米以上的枯死松枝',
+            title: '集材对象-高度5厘米以上的树桩',
+            dataIndex: 'jcFcGaodudayuwu',
+            key: 'jcFcGaodudayuwu'
+        },
+        {
+            title: '集材对象-藤蔓或活树连着枯死树',
+            dataIndex: 'jcFcChanzhe',
+            key: 'jcFcChanzhe'
+        },
+        {
+            title: '集材对象-藤蔓覆盖的枯死松树',
+            dataIndex: 'jcFcFugai',
+            key: 'jcFcFugai'
+        },
+        {
+            title: '集材对象-风折风倒的枯死松树',
+            dataIndex: 'jcFcFengzhe',
+            key: 'jcFcFengzhe'
+        },
+        {
+            title: '集材对象-火烧、雷击枯死松树',
+            dataIndex: 'jcFcHuoshao',
+            key: 'jcFcHuoshao'
+        },
+        {
+            title: '集材对象-悬崖边枯死松树',
+            dataIndex: 'jcFcXuanya',
+            key: 'jcFcXuanya'
+        },
+        {
+            title: '集材对象-悬挂或地面的松树梢头',
+            dataIndex: 'jcFcXuangua',
+            key: 'jcFcXuangua'
+        },
+        {
+            title: '集材对象-活松树上枯死树枝',
+            dataIndex: 'jcFcHuoshukuzhi',
+            key: 'jcFcHuoshukuzhi'
+        },
+        {
+            title: '集材对象-伐除小计',
+            dataIndex: 'jcFcHuoTotal',
+            key: 'jcFcHuoTotal'
+        },
+        {
+            title: '集材对象-用草覆盖',
+            dataIndex: 'jcYcCaogai',
+            key: 'jcYcCaogai'
+        },
+        {
+            title: '集材对象-用枯枝落叶覆盖',
+            dataIndex: 'jcYcKuye',
+            key: 'jcYcKuye'
+        },
+        {
+            title: '集材对象-用土壤覆盖',
+            dataIndex: 'jcYcTurang',
+            key: 'jcYcTurang'
+        },
+        {
+            title: '集材对象-用藤蔓覆盖的松材',
+            dataIndex: 'jcYcTengman',
+            key: 'jcYcTengman'
+        },
+        {
+            title: '集材对象-隐藏于地沟',
+            dataIndex: 'jcYcDigou',
+            key: 'jcYcDigou'
+        },
+        {
+            title: '集材对象-洞穴中的松材',
+            dataIndex: 'jcYcDongxue',
+            key: 'jcYcDongxue'
+        },
+        {
+            title: '集材对象-隐藏小计',
+            dataIndex: 'jcYcTotal',
+            key: 'jcYcTotal'
+        },
+        {
+            title: '集材对象-1厘米以上枯死松枝',
             dataIndex: 'jcKusi',
             key: 'jcKusi'
         },
+        //集材结束，焚烧开始
         {
-            title: '集材对象',
-            dataIndex: 'fsJicai',
-            key: 'fsJicai'
+            title: '焚烧对象-显眼枯死松树',
+            dataIndex: 'fsFcXianyan',
+            key: 'fsFcXianyan'
         },
+        {
+            title: '焚烧对象-细小枯死松树',
+            dataIndex: 'fsFcXixiao',
+            key: 'fsFcXixiao'
+        },
+        {
+            title: '焚烧对象-高度5厘米以上的树桩',
+            dataIndex: 'fsFcGaodudayuwu',
+            key: 'fsFcGaodudayuwu'
+        },
+        {
+            title: '焚烧对象-藤蔓或活树连着枯死树',
+            dataIndex: 'fsFcChanzhe',
+            key: 'fsFcChanzhe'
+        },
+        {
+            title: '焚烧对象-藤蔓覆盖的枯死松树',
+            dataIndex: 'fsFcFugai',
+            key: 'fsFcFugai'
+        },
+        {
+            title: '焚烧对象-风折风倒的枯死松树',
+            dataIndex: 'fsFcFengzhe',
+            key: 'fsFcFengzhe'
+        },
+        {
+            title: '焚烧对象-火烧、雷击枯死松树',
+            dataIndex: 'fsFcHuoshao',
+            key: 'fsFcHuoshao'
+        },
+        {
+            title: '焚烧对象-悬崖边枯死松树',
+            dataIndex: 'fsFcXuanya',
+            key: 'fsFcXuanya'
+        },
+        {
+            title: '焚烧对象-悬挂或地面的松树梢头',
+            dataIndex: 'fsFcXuangua',
+            key: 'fsFcXuangua'
+        },
+        {
+            title: '焚烧对象-活松树上枯死树枝',
+            dataIndex: 'fsFcHuoshukuzhi',
+            key: 'fsFcHuoshukuzhi'
+        },
+        {
+            title: '焚烧对象-伐除小计',
+            dataIndex: 'fsFcHuoTotal',
+            key: 'fsFcHuoTotal'
+        },
+        {
+            title: '焚烧对象-用草覆盖',
+            dataIndex: 'fsYcCaogai',
+            key: 'fsYcCaogai'
+        },
+        {
+            title: '焚烧对象-用枯枝落叶覆盖',
+            dataIndex: 'fsYcKuye',
+            key: 'fsYcKuye'
+        },
+        {
+            title: '焚烧对象-用土壤覆盖',
+            dataIndex: 'fsYcTurang',
+            key: 'fsYcTurang'
+        },
+        {
+            title: '焚烧对象-用藤蔓覆盖的松材',
+            dataIndex: 'fsYcTengman',
+            key: 'fsYcTengman'
+        },
+        {
+            title: '焚烧对象-隐藏于地沟',
+            dataIndex: 'fsYcDigou',
+            key: 'fsYcDigou'
+        },
+        {
+            title: '焚烧对象-洞穴中的松材',
+            dataIndex: 'fsYcDongxue',
+            key: 'fsYcDongxue'
+        },
+        {
+            title: '焚烧对象-隐藏小计',
+            dataIndex: 'fsYcTotal',
+            key: 'fsYcTotal'
+        },
+        {
+            title: '焚烧对象-1厘米以上枯死松枝',
+            dataIndex: 'fsKusi',
+            key: 'fsKusi'
+        },
+        //焚烧结束
         {
             title: '伐桩高度5厘米以下',
             dataIndex: 'fzFazhuang',
             key: 'fzFazhuang'
+        },
+        {
+            title: '伐桩高度5厘米以下',
+            dataIndex: 'fzBopi',
+            key: 'fzBopi'
         },
         {
             title: '在横断面上砍“+字”口',
@@ -245,6 +413,16 @@ function ScxcSupervisor({ dispatch, list: dataSource, loading, total,regionList,
             title: '覆盖泥土厚度2厘以上',
             dataIndex: 'fzNitu',
             key: 'fzNitu'
+        },
+        {
+            title: '伐桩小计',
+            dataIndex: 'fzTotal',
+            key: 'fzTotal'
+        },
+        {
+            title: '伐桩个数',
+            dataIndex: 'fzNumber',
+            key: 'fzNumber'
         },
         {
             title: '防治位置',
@@ -297,7 +475,6 @@ function ScxcSupervisor({ dispatch, list: dataSource, loading, total,regionList,
         name:'全部',
         id:0
     };
-    console.log(startDate);
     return (
         <div className={styles.normal}>
             <div>
@@ -327,7 +504,7 @@ function ScxcSupervisor({ dispatch, list: dataSource, loading, total,regionList,
                     dataSource={dataSource}
                     loading={loading}
                     rowKey={record => record.id}
-                    scroll={{x:5000}}
+                    scroll={{x:12000}}
                     pagination={false}
                 />
                 <Pagination

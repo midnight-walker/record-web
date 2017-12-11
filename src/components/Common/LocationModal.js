@@ -44,6 +44,7 @@ class locationModal extends React.Component {
                     visible={this.state.visible}
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
+                    width="1000"
                 >
                     <div id="j-map-container" style={{width: '100%', height: '400px'}}>
                         <Map center={pointer}
