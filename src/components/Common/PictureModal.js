@@ -4,6 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Modal, Button } from 'antd';
+import styles from './PictureModal.less';
 class pictureModal extends React.Component {
     constructor(){
         super();
@@ -29,7 +30,7 @@ class pictureModal extends React.Component {
     render() {
         const { picList } = this.props;
         let list=[];
-        if(typeof picList==='string'){
+        if(typeof picList==='string' && picList!==''){
             list=picList.split(',')
         }
         return (
@@ -42,8 +43,8 @@ class pictureModal extends React.Component {
                     onCancel={this.handleCancel}
                     width="1000"
                 >
-                    <div style={{width: '100%'}}>
-                        {list.map(d => <img style="max-width:100%" src={d}/>)}
+                    <div className={styles.imgbox} style={{width: '100%'}}>
+                        {list.map(d => <img src={d}/>)}
                     </div>
                 </Modal>
             </div>
